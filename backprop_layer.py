@@ -37,7 +37,6 @@ ___ = ___ ___ ___
 dw    dw  dz  da
 
 
-'''
 def update_weights(weights,loss):
     new = [x+calculate_step(loss) for x in weights]
     return new
@@ -50,4 +49,8 @@ def get_gradient(dy,dx):
     pass
 def calculate_step(loss):
     return 0.001 * loss
+    
+    
+    ^^ Does NOT YET WORK
+'''
 
