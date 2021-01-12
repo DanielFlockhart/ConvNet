@@ -7,16 +7,6 @@ import convert_image as image
 import model_data as model
 import batch_data
 import time
-'''
-def full_pass(folder_length,folders,shapes,weights,biases,layers,stride,window_size,img_size):
-    loss_total = (0,0,0)
-    for f in range(folders):
-        for x in range(folder_length):
-            (inputs,expected) = image.initialise_image(get_img_name(shapes[f],x),shapes[f]+str("s"),window_size,stride,img_size)
-            (model,prediction,loss) = one_shot(weights,biases,inputs,expected,layers,shapes)
-            loss_total += loss
-    return loss_total/(folders*folder_length)
-'''
 
 
 def get_prediction(weights,possibles):
@@ -29,10 +19,6 @@ def one_shot(weights,biases,inputs,expected,layers,shapes):
     prediction = get_prediction(feed_forward,shapes)
     loss = b_layer.loss(expected,feed_forward)
     return (feed_forward,prediction,loss)
-
-
-
-    
 
 
 def get_img_name(catergory,num):
@@ -64,10 +50,9 @@ def batch_pass(shapes,weights,biases,layers,stride,window_size,img_size,batch):
 
 def train(epochs,layers,stride,window_size,size,shapes,batch_size):
     (best_model,best_loss) = ([],10000)
-    (weights,biases) = ff_layer.init_brain(layers)
-    batch = batch_data.get_batch(batch_size,100,shapes)
+    (weights,biases) = ff_layer.init_brain(layers
     for x in range(epochs):
-        #batch = batch_data.get_batch(batch_size,100,shapes)
+        batch = batch_data.get_batch(batch_size,100,shapes)
         loss = batch_pass(shapes,weights,biases,layers,stride,window_size,size,batch)
         (weights,biases) = b_layer.backwards_pass(weights,biases,loss,layers)
         print((loss[0]+loss[1]+loss[2])/3)
