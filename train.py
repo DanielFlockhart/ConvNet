@@ -58,4 +58,4 @@ def train(epochs,layers,stride,window_size,size,shapes,batch_size):
         print((loss[0]+loss[1]+loss[2])/3)
         print(len(weights[0]))
     model_name = str(input("Model Name : "))
-    model.save_model("model0",(weights,biases))
+    model.save_model(model_name,(weights,biases))
